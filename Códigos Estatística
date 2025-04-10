@@ -1,0 +1,54 @@
+# Definir o caminho do arquivo (substitua pelo seu caminho real)
+caminho_arquivo <- "C:/Users/borbo/OneDrive/Área de Trabalho/dengue-dataset.csv"
+
+# Ler o arquivo CSV
+dados <- read.csv(caminho_arquivo, sep = ',', dec = '.', header = TRUE,
+                  fileEncoding = "latin1")
+
+
+names(dados)
+
+# Função Cálculo de Moda 
+moda_multiplas <- function(v) {
+  v <- na.omit(v)  # remove NAs
+  tab <- table(v)  # conta frequência
+  modas <- names(tab[tab == max(tab)])
+  return(modas)
+}
+
+# Descrição Chuva
+media_chuva <- mean(dados$chuva, na.rm = TRUE)
+cat("A média de chuva por mês é ", media_chuva, "milímetros")
+mediana_chuva <- median(dados$chuva, na.rm = TRUE)
+cat("A mediana de chuva por mês é ", mediana_chuva, "milímetros")
+moda_chuva <- moda_multiplas(dados$chuva)
+cat("A moda de chuva é ", moda_chuva, "milímetros")
+var_chuva <- var(dados$chuva, na.rm = TRUE)
+cat("A variância da chuva por mês é", var_chuva, "milímetros")
+sd_chuva <- sd(dados$chuva, na.rm = TRUE)
+cat("O desvio padrão é", sd_chuva)
+
+# Descrição Casos Confirmados
+
+media_casos <- mean(dados$casos.confirmados, na.rm = TRUE)
+cat("A média de casos confirmados por mês é ", media_casos)
+mediana_casos <- median(dados$casos.confirmados, na.rm = TRUE)
+cat("A mediana de casos confirmados por mês é ", mediana_casos)
+moda_casos <- moda_multiplas(dados$casos.confirmados)
+cat("A moda de casos confirmados é", moda_casos)
+var_casos <- var(dados$casos.confirmados, na.rm = TRUE)
+cat("A variância de casos por mês é", var_casos)
+sd_casos <- sd(dados$casos.confirmados, na.rm = TRUE)
+cat("O desvio padrão é", sd_casos)
+
+# Descrição Média de Temperatura
+media_temperatura <- mean(dados$temperatura.media, na.rm = TRUE)
+cat("A média da média de temperatura por mês é ", media_temperatura, "ºC")
+mediana_temperatura <- median(dados$temperatura.media, na.rm = TRUE)
+cat("A mediana de temperatura média por mês é ", mediana_temperatura, "ºC")
+moda_temperatura <- moda_multiplas(dados$temperatura.media)
+cat("A moda de temperatura média é", moda_temperatura, "ºC")
+var_temperatura <- var(dados$temperatura.media, na.rm = TRUE)
+cat("A variância da temperatura por mês é", var_temperatura, "milímetros")
+sd_temperatura <- sd(dados$temperatura.media, na.rm = TRUE)
+cat("O desvio padrão é", sd_temperatura)
